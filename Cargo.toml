@@ -6,7 +6,9 @@ edition = "2021"
 
 [dependencies]
 # Web
-axum = "0.7"
+axum = { version = "0.7", features = ["macros"] }
+axum-extra = "0.9.6"
+
 # 异步运行时
 tokio = { version = "1", features = ["full"] }
 # 序列化

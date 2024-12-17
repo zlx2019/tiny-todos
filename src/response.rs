@@ -1,5 +1,5 @@
 use axum::{response::IntoResponse, Json};
-use serde::{de::DeserializeOwned, Serialize};
+use serde::Serialize;
 
 const SUCCESS_MSG: &str = "success";
 
@@ -32,7 +32,7 @@ impl ApiResponse<()> {
 }
 
 impl<T> ApiResponse<T> where 
-    T: Serialize + DeserializeOwned + Clone
+    T: Serialize
 {
     pub fn success(data: T) -> Self {
         Self::new(ResponseCode::Success, SUCCESS_MSG, Some(data))
