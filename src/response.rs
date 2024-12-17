@@ -29,6 +29,9 @@ impl ApiResponse<()> {
     pub fn ok() -> Self{
         Self::new(ResponseCode::Success, SUCCESS_MSG, None)
     }
+    pub fn error(code: ResponseCode, message: impl Into<String>) -> Self {
+        Self::new(code, message, None)
+    }
 }
 
 impl<T> ApiResponse<T> where 
@@ -40,9 +43,7 @@ impl<T> ApiResponse<T> where
     pub fn ok_with_msg(message: impl Into<String>) -> Self{
         Self::new(ResponseCode::Success, message, None)
     }
-    pub fn error(code: ResponseCode, message: impl Into<String>) -> Self {
-        Self::new(code, message, None)
-    }
+
     fn new(code: ResponseCode, message: impl Into<String>, data: Option<T>) -> Self{
         Self{
             code: code as i32,

@@ -41,6 +41,6 @@ impl IntoResponse for ApiError{
             ApiError::RequestParamError => (StatusCode::BAD_REQUEST),
             ApiError::MethodNotAllowed => (StatusCode::METHOD_NOT_ALLOWED),
         };
-        (http_status, Json(ApiResponse::<()>::error(ResponseCode::Error, message))).into_response()
+        (http_status, Json(ApiResponse::error(ResponseCode::Error, message))).into_response()
     }
 }

@@ -131,11 +131,11 @@ pub async fn extraction_body_str(body: String) -> impl IntoResponse{
 }
 
 /// 以字节流形式提取 RequestBody  并确保它是有效的utf-8
-pub async fn extraction_body_bytes(body_bytes: Bytes) -> impl IntoResponse{
+pub async fn extraction_body_bytes(body_bytes: Bytes) -> Result<impl IntoResponse, ApiError>{
     let res =  String::from_utf8(body_bytes.to_vec()).map_err(|e| format!("invalid UTF-8: {}",e));
     match res {
-        Ok(body) => ApiResponse::success(body),
-        Err(err_msg) => ApiResponse::error(crate::response::ResponseCode::Error, err_msg),
+        Ok(body) => Ok(ApiResponse::success(body)),
+        Err(err_msg) => Err(ApiError::SysError),
     }
 }
 
