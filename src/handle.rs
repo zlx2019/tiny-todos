@@ -6,7 +6,7 @@ use axum::{body::Bytes, extract::{rejection::JsonRejection, Path, Query, Request
 use serde::{Deserialize, Serialize};
 use tracing::info;
 
-use crate::{error::ApiError, reader::RequestBody, response::ApiResponse, state::AppState, types::{BodyParams, DisasmRequest, Pagination, QueryParams}};
+use crate::{error::ApiError, extract::RequestBody, response::ApiResponse, state::AppState, types::{BodyParams, DisasmRequest, Pagination, QueryParams}};
 
 /// Home
 pub async fn index() -> &'static str {
