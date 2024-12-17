@@ -5,7 +5,7 @@
 use axum::{http::StatusCode, response::IntoResponse, Json};
 use serde::Serialize;
 use thiserror::Error;
-use crate::response::{ApiResponse, ResponseCode};
+use crate::response::ApiResponse;
 
 
 /// Api Error
@@ -41,6 +41,6 @@ impl IntoResponse for ApiError{
             ApiError::RequestParamError => (StatusCode::BAD_REQUEST),
             ApiError::MethodNotAllowed => (StatusCode::METHOD_NOT_ALLOWED),
         };
-        (http_status, Json(ApiResponse::error(ResponseCode::Error, message))).into_response()
+        (http_status, Json(ApiResponse::<()>::error_with_msg(message))).into_response()
     }
 }

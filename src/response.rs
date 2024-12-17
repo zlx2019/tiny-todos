@@ -1,6 +1,8 @@
 use axum::{response::IntoResponse, Json};
 use serde::Serialize;
 
+use crate::error::ApiError;
+
 const SUCCESS_MSG: &str = "success";
 
 
@@ -25,28 +27,29 @@ impl<T: Serialize> IntoResponse for ApiResponse<T>{
 }
 
 impl ApiResponse<()> {
-    // 响应成功，无数据
-    pub fn ok() -> Self{
-        Self::new(ResponseCode::Success, SUCCESS_MSG, None)
-    }
-    pub fn error(code: ResponseCode, message: impl Into<String>) -> Self {
-        Self::new(code, message, None)
+    pub fn empty() -> Self{
+        Self::new(ResponseCode::Success.into(), SUCCESS_MSG, None)
     }
 }
 
 impl<T> ApiResponse<T> where 
     T: Serialize
-{
-    pub fn success(data: T) -> Self {
-        Self::new(ResponseCode::Success, SUCCESS_MSG, Some(data))
+{   
+    pub fn ok(data: T) -> Self {
+        Self::new(ResponseCode::Success.into(), SUCCESS_MSG, Some(data))
     }
     pub fn ok_with_msg(message: impl Into<String>) -> Self{
-        Self::new(ResponseCode::Success, message, None)
+        Self::new(ResponseCode::Success.into(), message, None)
     }
-
-    fn new(code: ResponseCode, message: impl Into<String>, data: Option<T>) -> Self{
+    pub fn error_with_msg(message: impl Into<String>) -> Self {
+        Self::new(ResponseCode::Error.into(), message.into(), None)
+    }
+    pub fn error(error: ApiError) -> Self {
+        Self::new(ResponseCode::Error.into(), error.to_string(), None)
+    }
+    fn new(code: i32, message: impl Into<String>, data: Option<T>) -> Self{
         Self{
-            code: code as i32,
+            code: code,
             message: message.into(),
             data
         }
@@ -58,4 +61,13 @@ impl<T> ApiResponse<T> where
 pub enum ResponseCode{
     Success = 0,
     Error = 1,
+}
+
+impl From<ResponseCode> for i32{
+    fn from(value: ResponseCode) -> Self {
+        match value {
+            ResponseCode::Success => 0,
+            ResponseCode::Error => 1,
+        }
+    }
 }
