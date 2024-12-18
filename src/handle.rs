@@ -6,7 +6,7 @@ use axum::{body::Bytes, extract::{rejection::JsonRejection, Path, Query, Request
 use serde::{Deserialize, Serialize};
 use tracing::info;
 
-use crate::{error::ApiError, extract::RequestBody, response::ApiResponse, state::AppState, types::{BodyParams, DisasmRequest, Pagination, QueryParams}};
+use crate::{error::ApiError, extract::RequestBody, response::ApiResponse, state::AppState, types::{BodyParams, Pagination, QueryParams}};
 
 /// Home
 pub async fn index() -> Result<impl IntoResponse, ApiError>{
@@ -22,10 +22,6 @@ pub async fn std_api () -> Result<impl IntoResponse, ApiError>{
     }
 }
 
-/// Cloudflare Api
-pub async fn cloudflaer_disasm(Json(payload): Json<DisasmRequest>) -> impl IntoResponse{
-    ApiResponse::ok(payload)
-}
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct CreateTodoReq{
@@ -116,7 +112,7 @@ pub async fn extraction_body_err(req: Result<Json<BodyParams>, JsonRejection>) -
 
 /// 提取请求头信息
 pub async fn extraction_headers(headers: HeaderMap) -> impl IntoResponse{
-    info!("extraction headers: {:?}", headers);
+    // info!("extraction headers: {:?}", headers);
     let maps: HashMap<String, String> = headers
         .iter()
         .filter_map(|(key, value)| {

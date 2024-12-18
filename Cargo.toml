@@ -2,24 +2,36 @@
 name = "tiny-todos"
 version = "0.1.0"
 edition = "2021"
+authors = ["Zero"]
+readme = "README.md"
+license = "MIT"
+description = "Rust axum small project examples"
 
 
 [dependencies]
 # Web
 axum = { version = "0.7", features = ["macros"] }
 axum-extra = "0.9.6"
+tower = "0.5.2"
+tower-http = { version = "0.6.2", features = ["full"] }
+
 
 # 异步运行时
 tokio = { version = "1", features = ["full"] }
+
 # 序列化
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+
 # logger
 tracing = "0.1.40"
+tracing-appender = "0.2.3"
 tracing-subscriber = { version = "0.3", features = ["env-filter", "local-time"] }
 time = { version = "0.3", features = ["macros"] }
+
 # 错误处理
 anyhow = "1.0.94"
 thiserror = "2.0.7"
+
 # 参数校验
 validator = { version = "0.19.0", features = ["derive"] }

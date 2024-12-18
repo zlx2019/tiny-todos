@@ -1,0 +1,151 @@
+2024/12/18 11:33:27  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 11:34:54  INFO src/main.rs:30: Server stop
+2024/12/18 11:37:04  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 11:37:06  INFO src/main.rs:30: Server stop
+2024/12/18 11:37:15  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:22:43  INFO src/main.rs:30: Server stop
+2024/12/18 14:28:16  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:28:41  INFO src\handle.rs:84: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:28:46  INFO src/main.rs:29: Server stop
+2024/12/18 14:28:53  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:28:56  INFO src\handle.rs:84: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:29:14  INFO src\handle.rs:119: extraction headers: {"content-type": "application/json", "user-agent": "PostmanRuntime/7.43.0", "accept": "*/*", "postman-token": "5a230520-c65c-41c1-beeb-92fd2e3ee660", "host": "127.0.0.1:15001", "accept-encoding": "gzip, deflate, br", "connection": "keep-alive", "content-length": "78"}
+2024/12/18 14:29:16  INFO src/main.rs:29: Server stop
+2024/12/18 14:29:18  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:29:20  INFO src\handle.rs:119: extraction headers: {"content-type": "application/json", "user-agent": "PostmanRuntime/7.43.0", "accept": "*/*", "postman-token": "99e0ae02-eec3-4eeb-b986-77f60f46aa19", "host": "127.0.0.1:15001", "accept-encoding": "gzip, deflate, br", "connection": "keep-alive", "content-length": "78"}
+2024/12/18 14:41:23  INFO src/main.rs:29: Server stop
+2024/12/18 14:41:28  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:41:33  INFO src\handle.rs:115: extraction headers: {"content-type": "application/json", "user-agent": "PostmanRuntime/7.43.0", "accept": "*/*", "postman-token": "5122b664-04aa-41ab-8e39-537dda1f64b7", "host": "127.0.0.1:15001", "accept-encoding": "gzip, deflate, br", "connection": "keep-alive", "content-length": "78"}
+2024/12/18 14:41:34  INFO src\handle.rs:115: extraction headers: {"content-type": "application/json", "user-agent": "PostmanRuntime/7.43.0", "accept": "*/*", "postman-token": "79e13f30-8d4b-43e9-92a2-3c30ae160692", "host": "127.0.0.1:15001", "accept-encoding": "gzip, deflate, br", "connection": "keep-alive", "content-length": "78"}
+2024/12/18 14:41:36  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:41:37  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:41:43  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:46:39  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:46:40  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:46:41  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:46:48  INFO src/main.rs:29: Server stop
+2024/12/18 14:46:52  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:46:53  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:46:54  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:47:32  INFO src/main.rs:29: Server stop
+2024/12/18 14:47:37  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:47:38  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:47:39  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:47:52  INFO src/main.rs:29: Server stop
+2024/12/18 14:47:56  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:47:57  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:47:58  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:47:58  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:47:59  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:47:59  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:48:04  INFO src/main.rs:29: Server stop
+2024/12/18 14:54:37  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:54:40  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 14:54:41  INFO src/main.rs:29: Server stop
+2024/12/18 14:55:30  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 14:55:33  INFO src/main.rs:29: Server stop
+2024/12/18 14:56:11  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 15:22:23  INFO src/main.rs:29: Server stop
+2024/12/18 15:23:32  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 15:35:53  INFO src/main.rs:29: Server stop
+2024/12/18 15:37:59  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 15:39:55  INFO src/main.rs:29: Server stop
+2024/12/18 15:40:20  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 15:40:34  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 15:43:27  INFO src/main.rs:29: Server stop
+2024/12/18 15:43:32  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 15:43:43  INFO src\handle.rs:115: extraction headers: {"nnameaa": "zero", "authorization": "213123", "content-type": "application/json", "user-agent": "PostmanRuntime/7.43.0", "accept": "*/*", "postman-token": "114f2a6a-364a-45b5-8dbd-8a40b9318f42", "host": "127.0.0.1:15001", "accept-encoding": "gzip, deflate, br", "connection": "keep-alive", "content-length": "78"}
+2024/12/18 15:44:07  INFO src/main.rs:29: Server stop
+2024/12/18 15:44:12  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 15:48:02  INFO src/main.rs:29: Server stop
+2024/12/18 15:48:07  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 15:50:04  INFO src/main.rs:29: Server stop
+2024/12/18 15:50:09  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 15:50:12  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:50:13  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:50:48  INFO src/main.rs:29: Server stop
+2024/12/18 15:50:52  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 15:50:53  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:50:54  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:50:55  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:50:58  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:50:59  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:51:00  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:51:01  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:51:01  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:51:01  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:51:02  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 15:51:02  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 16:05:41  INFO src/main.rs:29: Server stop
+2024/12/18 16:47:21  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 16:47:26  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 16:47:27  INFO C:\Users\Zero\.cargo\registry\src\mirrors.ustc.edu.cn-4affec411d11e50f\tower-http-0.6.2\src\trace\on_response.rs:114: finished processing request latency=0 ms status=200
+2024/12/18 16:55:33  INFO src/main.rs:29: Server stop
+2024/12/18 16:58:05  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 16:58:09  INFO src\route.rs:35: request: GET /extraction/headers
+2024/12/18 16:58:09  INFO src\route.rs:38: response: status=200 OK, latency=0ms
+2024/12/18 17:05:48  INFO src/main.rs:29: Server stop
+2024/12/18 17:06:26  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:06:28  INFO src\route.rs:33: response: status=200 OK, latency=172ms
+2024/12/18 17:06:30  INFO src/main.rs:29: Server stop
+2024/12/18 17:15:46  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:15:48  INFO src\route.rs:25: [GET] | [/extraction/headers] | [HTTP/1.1]
+2024/12/18 17:15:48  INFO src\route.rs:28: response: status=200 OK, latency=765ms
+2024/12/18 17:16:08  INFO src/main.rs:29: Server stop
+2024/12/18 17:16:15  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:16:17  INFO src\route.rs:25: GET | /extraction/headers | [HTTP/1.1]
+2024/12/18 17:16:17  INFO src\route.rs:28: response: status=200 OK, latency=705ms
+2024/12/18 17:17:24  INFO src/main.rs:29: Server stop
+2024/12/18 17:17:28  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:17:30  INFO src\route.rs:25: [Request] GET | /extraction/headers | [HTTP/1.1]
+2024/12/18 17:17:30  INFO src\route.rs:28: [Response] status=200, latency=452ms
+2024/12/18 17:17:35  INFO src\route.rs:25: [Request] GET | /extraction/headers | [HTTP/1.1]
+2024/12/18 17:17:35  INFO src\route.rs:28: [Response] status=200, latency=391ms
+2024/12/18 17:18:43  INFO src/main.rs:29: Server stop
+2024/12/18 17:18:48  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:18:48  INFO src\route.rs:25: None
+2024/12/18 17:18:48  INFO src\route.rs:26: [Request] GET | /extraction/headers | [HTTP/1.1]
+2024/12/18 17:18:48  INFO src\route.rs:29: None
+2024/12/18 17:18:48  INFO src\route.rs:30: [Response] status=200, latency=623ms
+2024/12/18 17:18:59  INFO src/main.rs:29: Server stop
+2024/12/18 17:19:04  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:19:04  INFO src\route.rs:25: [Request] GET | /extraction/headers | [HTTP/1.1]
+2024/12/18 17:19:04  INFO src\route.rs:28: [Response] status=200, latency=456ms
+2024/12/18 17:19:07  INFO src\route.rs:25: [Request] GET | /extraction/headers | [HTTP/1.1]
+2024/12/18 17:19:07  INFO src\route.rs:28: [Response] status=200, latency=416ms
+2024/12/18 17:20:19  INFO src\route.rs:25: [Request] POST | /extraction/body | [HTTP/1.1]
+2024/12/18 17:20:19  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 17:20:19  INFO src\route.rs:28: [Response] status=200, latency=774ms
+2024/12/18 17:20:54  INFO src/main.rs:29: Server stop
+2024/12/18 17:20:58  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:20:59  INFO src\route.rs:25: [Request] POST | /extraction/body | [HTTP/1.1]
+2024/12/18 17:20:59  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 17:20:59  INFO src\route.rs:28: [Response] status=200, latency=1ms
+2024/12/18 17:21:01  INFO src\route.rs:25: [Request] POST | /extraction/body | [HTTP/1.1]
+2024/12/18 17:21:01  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 17:21:01  INFO src\route.rs:28: [Response] status=200, latency=0ms
+2024/12/18 17:21:24  INFO src\route.rs:25: [Request] POST | /extraction/body | [HTTP/1.1]
+2024/12/18 17:21:24  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 17:21:24  INFO src\route.rs:28: [Response] status=200, latency=0ms
+2024/12/18 17:21:37  INFO src\route.rs:25: [Request] POST | /extraction/body | [HTTP/1.1]
+2024/12/18 17:21:37  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 17:21:37  INFO src\route.rs:28: [Response] status=200, latency=0ms
+2024/12/18 17:25:20  INFO src/main.rs:29: Server stop
+2024/12/18 17:25:25  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:25:26  INFO src\route.rs:25: [Request] POST | /extraction/body | [HTTP/1.1]
+2024/12/18 17:25:26  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 17:25:26  INFO src\route.rs:28: [Response] status=200, latency=0ms
+2024/12/18 17:41:12  INFO src/main.rs:29: Server stop
+2024/12/18 17:41:25  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:41:27  INFO src\route.rs:25: [Request] POST | /extraction/body | [HTTP/1.1]
+2024/12/18 17:41:27  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 17:41:27  INFO src\route.rs:28: [Response] status=200, latency=1ms
+2024/12/18 17:41:28  INFO src\route.rs:25: [Request] POST | /extraction/body | [HTTP/1.1]
+2024/12/18 17:41:28  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 17:41:28  INFO src\route.rs:28: [Response] status=200, latency=0ms
+2024/12/18 17:42:20  INFO src\route.rs:25: [Request] POST | /extraction/body | [HTTP/1.1]
+2024/12/18 17:42:20  INFO src\handle.rs:80: extraction body req: BodyParams { id: 321312, name: "dwadawd", lock: false, score: Some(123.321) }
+2024/12/18 17:42:20  INFO src\route.rs:28: [Response] status=200, latency=0ms
+2024/12/18 17:52:09  INFO src/main.rs:29: Server stop
+2024/12/18 17:52:15  INFO src/main.rs:20: Server listening on 127.0.0.1:15001
+2024/12/18 17:59:20  INFO src/main.rs:29: Server stop

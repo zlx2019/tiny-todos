@@ -11,13 +11,24 @@ use crate::response::ApiResponse;
 /// Api Error
 #[derive(Error, Debug, Serialize)]
 pub enum ApiError{
-    #[error("system error")]
+    #[error("Error")]
     SysError,
-    #[error("api not found")]
+    #[error("Route not found")]
     RouteNotFound,
-    #[error("method not allowed")]
+    #[error("Method not allowed")]
     MethodNotAllowed,
-    #[error("invalid parameter: {0}")]
+
+    #[error("Unauthorized")]
+    Unauthorized,
+    #[error("Token syntax error")]
+    TokenSyntaxError,
+    #[error("Token invalid")]
+    TokenInvalid,
+    #[error("Token expired")]
+    TokenExpired,
+
+
+    #[error("Invalid parameter: {0}")]
     ValidationError(String),
 
 
@@ -40,6 +51,10 @@ impl IntoResponse for ApiError{
             ApiError::RequestUnsupportedMediaType(_) => (StatusCode::UNSUPPORTED_MEDIA_TYPE),
             ApiError::RequestParamError => (StatusCode::BAD_REQUEST),
             ApiError::MethodNotAllowed => (StatusCode::METHOD_NOT_ALLOWED),
+            ApiError::Unauthorized | 
+                ApiError::TokenSyntaxError | 
+                ApiError::TokenExpired | 
+                ApiError::TokenInvalid => (StatusCode::UNAUTHORIZED),
         };
         (http_status, Json(ApiResponse::<()>::error_with_msg(message))).into_response()
     }
