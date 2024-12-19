@@ -13,6 +13,11 @@ pub async fn index() -> Result<impl IntoResponse, ApiError>{
     Ok(ApiResponse::ok("Hello"))
 }
 
+/// Hello World endpoint
+pub async fn hello_world() -> Result<impl IntoResponse, ApiError> {
+    Ok(ApiResponse::ok("Hello World"))
+}
+
 /// 标准API
 pub async fn std_api () -> Result<impl IntoResponse, ApiError>{
     if true {

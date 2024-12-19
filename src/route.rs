@@ -43,6 +43,7 @@ pub fn routers() -> axum::Router {
 pub fn api_route() -> Router {
     Router::new()
         .route("/", get(index))
+        .route("/hello", get(hello_world))
         .route("/todos", get(list_handler))
         .route("/todos/:id", get(update_handler))
         .route("/todos", post(create_handler))
