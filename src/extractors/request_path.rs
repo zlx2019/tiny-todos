@@ -13,11 +13,10 @@ where
     T: DeserializeOwned + Send,
     S: Send + Sync{
     type Rejection = ApiError;
-
     async fn from_request_parts(parts: &mut Parts, state: &S) -> Result<Self, Self::Rejection> {
         Path::<T>::from_request_parts(parts, state)
             .await
             .map(|value| Self(value.0))
-            .map_err(|rejection| ApiError::RequestParamError(rejection.body_text()))
+            .map_err(|rejection| ApiError::RequestPathError(rejection))
     }
 }

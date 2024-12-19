@@ -3,7 +3,7 @@
 
 use axum::{
     body::Bytes,
-    extract::{rejection::JsonRejection, Path, Query, Request, State},
+    extract::{Path, Query, Request, State},
     http::{HeaderMap, Method},
     response::IntoResponse,
     Json,
@@ -104,32 +104,6 @@ pub async fn extraction_body_custom(
 ) -> impl IntoResponse {
     info!("extraction body by custom: {:?}", req);
     ApiResponse::ok(req)
-}
-
-/// 从 Request Body 提取参数，处理提取错误情况
-pub async fn extraction_body_err(
-    req: Result<Json<BodyParams>, JsonRejection>,
-) -> Result<impl IntoResponse, ApiError> {
-    match req {
-        Ok(Json(payload)) => {
-            // 提取成功
-            info!("extraction body req: {:?}", payload);
-            return Ok(ApiResponse::ok(payload));
-        }
-        Err(e) => {
-            let error = match e {
-                JsonRejection::MissingJsonContentType(ct) => {
-                    info!("{:?}", ct);
-                    ApiError::RequestUnsupportedMediaType(ct.to_string())
-                }
-                JsonRejection::JsonDataError(_) | JsonRejection::JsonSyntaxError(_) => {
-                    ApiError::RequestParamError("xxx".to_string())
-                }
-                _ => ApiError::SysError,
-            };
-            Err(error)
-        }
-    }
 }
 
 /// 提取请求头信息

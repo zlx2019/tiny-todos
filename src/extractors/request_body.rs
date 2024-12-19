@@ -5,7 +5,6 @@ use crate::error::ApiError;
 /// Request Body Json Extractor
 pub struct RequestBody<T>(pub T);
 
-
 #[async_trait]
 impl<S, T> FromRequest<S> for RequestBody<T>
 where
@@ -19,8 +18,6 @@ where
         axum::Json::<T>::from_request(req, state)
             .await
         .map(|value| Self(value.0))
-        .map_err(|rejection| ApiError::RequestBodyError(rejection.body_text()))
+        .map_err(|rejection| ApiError::RequestBodyJsonError(rejection))
     }
 }
-
-
