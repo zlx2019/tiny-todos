@@ -4,6 +4,7 @@
 use std::{collections::HashMap, sync::atomic::Ordering};
 use axum::{body::Bytes, extract::{rejection::JsonRejection, Path, Query, Request, State}, http::{HeaderMap, Method}, response::IntoResponse, Json};
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 use tracing::info;
 
 use crate::{error::ApiError, extract::RequestBody, response::ApiResponse, state::AppState, types::{BodyParams, Pagination, QueryParams}};
@@ -163,4 +164,12 @@ pub async fn extraction_order(
     body: String
 ) -> impl IntoResponse{
     ApiResponse::empty()
+}
+
+/// Example handler demonstrating enhanced JSON parsing error handling
+pub async fn example_json_handler(
+    RequestBody(body): RequestBody<Value>
+) -> Result<impl IntoResponse, ApiError> {
+    info!("Received valid JSON body: {:?}", body);
+    Ok(ApiResponse::ok(body))
 }

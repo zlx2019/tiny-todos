@@ -1,4 +1,3 @@
-
 use axum::{
     async_trait, extract::{path::ErrorKind, rejection::{JsonRejection, PathRejection}, FromRequest, FromRequestParts, MatchedPath, Request}, http::{request::Parts, StatusCode}, RequestPartsExt
 };
@@ -30,18 +29,37 @@ where
             Ok(value) => Ok(Self(value.0)),
             // 错误原因断
             Err(rejection) => {
-                let path = path.unwrap();
+                let path = path.unwrap_or_default();
                 let error = match rejection {
                     JsonRejection::MissingJsonContentType(ct) => {
-                        ApiError::RequestUnsupportedMediaType(ct.to_string())
+                        ApiError::RequestUnsupportedMediaType(
+                            format!("Content-Type '{}' not supported. Expected application/json", ct)
+                        )
                     },
                     JsonRejection::JsonDataError(e) => {
                         error!("path: {}, error: {:?}", &path, e);
-                        ApiError::RequestParamError
+                        ApiError::JsonValidationError(
+                            format!("Invalid request body structure: {}", e)
+                        )
                     }
                     JsonRejection::JsonSyntaxError(e) => {
                         error!("path: {}, error: {:?}", &path, e);
-                        ApiError::RequestParamError
+                        if let Some(source) = e.source() {
+                            if let Some(json_err) = source.downcast_ref::<serde_json::Error>() {
+                                ApiError::JsonParseError {
+                                    message: json_err.to_string(),
+                                    location: JsonParseLocation {
+                                        line: json_err.line(),
+                                        column: json_err.column(),
+                                        message: format!("Invalid JSON syntax: {}", json_err),
+                                    },
+                                }
+                            } else {
+                                ApiError::RequestBodyParse(format!("Invalid JSON syntax: {}", e))
+                            }
+                        } else {
+                            ApiError::RequestBodyParse(format!("Invalid JSON syntax: {}", e))
+                        }
                     },
                     _ => ApiError::SysError,
                 };

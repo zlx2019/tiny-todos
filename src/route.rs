@@ -9,7 +9,7 @@ use tracing::Span;
 
 use crate::{
     fallback_process::{method_not_allowed_fallback, not_found_handler}, handle::{
-        create_handler, delete_handler, extraction_body, extraction_body_bytes,
+        create_handler, delete_handler, example_json_handler, extraction_body, extraction_body_bytes,
         extraction_body_custom, extraction_body_err, extraction_body_str, extraction_headers,
         extraction_path, extraction_path_and_query, extraction_query, extraction_request,
         extraction_state_counter, index, list_handler, update_handler,
@@ -48,6 +48,7 @@ pub fn api_route() -> Router {
         .route("/todos", post(create_handler))
         .route("/todos/:id", delete(delete_handler))
         .route("/todos/:id", patch(update_handler))
+        .route("/example/json", post(example_json_handler))
 }
 
 /// 示例api
