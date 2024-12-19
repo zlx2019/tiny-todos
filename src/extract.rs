@@ -38,15 +38,28 @@ where
                     },
                     JsonRejection::JsonDataError(e) => {
                         error!("path: {}, error: {:?}", &path, e);
-                        ApiError::RequestBodyValidation(
+                        ApiError::JsonValidationError(
                             format!("Invalid request body structure: {}", e)
                         )
                     }
                     JsonRejection::JsonSyntaxError(e) => {
                         error!("path: {}, error: {:?}", &path, e);
-                        ApiError::RequestBodyParse(
-                            format!("Invalid JSON syntax: {}", e)
-                        )
+                        if let Some(source) = e.source() {
+                            if let Some(json_err) = source.downcast_ref::<serde_json::Error>() {
+                                ApiError::JsonParseError {
+                                    message: json_err.to_string(),
+                                    location: JsonParseLocation {
+                                        line: json_err.line(),
+                                        column: json_err.column(),
+                                        message: format!("Invalid JSON syntax: {}", json_err),
+                                    },
+                                }
+                            } else {
+                                ApiError::RequestBodyParse(format!("Invalid JSON syntax: {}", e))
+                            }
+                        } else {
+                            ApiError::RequestBodyParse(format!("Invalid JSON syntax: {}", e))
+                        }
                     },
                     _ => ApiError::SysError,
                 };
