@@ -164,3 +164,11 @@ pub async fn extraction_order(
 ) -> impl IntoResponse{
     ApiResponse::empty()
 }
+
+/// Example handler demonstrating enhanced RequestBody extraction
+pub async fn enhanced_body_extraction(
+    RequestBody(req): RequestBody<BodyParams>
+) -> Result<impl IntoResponse, ApiError> {
+    info!("Received valid body: {:?}", req);
+    Ok(ApiResponse::ok(req))
+}

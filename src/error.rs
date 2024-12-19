@@ -38,6 +38,12 @@ pub enum ApiError{
     // 请求参数错误
     #[error("Request parameter error")]
     RequestParamError,
+
+    #[error("Request body validation error: {0}")]
+    RequestBodyValidation(String),
+
+    #[error("Request body parse error: {0}")]
+    RequestBodyParse(String),
 }
 
 /// 实现 ApiError -> Axum Response 的转换
@@ -51,10 +57,12 @@ impl IntoResponse for ApiError{
             ApiError::RequestUnsupportedMediaType(_) => (StatusCode::UNSUPPORTED_MEDIA_TYPE),
             ApiError::RequestParamError => (StatusCode::BAD_REQUEST),
             ApiError::MethodNotAllowed => (StatusCode::METHOD_NOT_ALLOWED),
-            ApiError::Unauthorized | 
-                ApiError::TokenSyntaxError | 
-                ApiError::TokenExpired | 
+            ApiError::Unauthorized |
+                ApiError::TokenSyntaxError |
+                ApiError::TokenExpired |
                 ApiError::TokenInvalid => (StatusCode::UNAUTHORIZED),
+            ApiError::RequestBodyValidation(_) => (StatusCode::BAD_REQUEST),
+            ApiError::RequestBodyParse(_) => (StatusCode::BAD_REQUEST),
         };
         (http_status, Json(ApiResponse::<()>::error_with_msg(message))).into_response()
     }

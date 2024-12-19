@@ -48,6 +48,7 @@ pub fn api_route() -> Router {
         .route("/todos", post(create_handler))
         .route("/todos/:id", delete(delete_handler))
         .route("/todos/:id", patch(update_handler))
+        .route("/example/body", post(enhanced_body_extraction))
 }
 
 /// 示例api
