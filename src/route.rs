@@ -1,3 +1,7 @@
+#![allow(unused_variables)]
+#![allow(dead_code)]
+
+
 use std::time::Duration;
 
 use axum::{
@@ -9,10 +13,7 @@ use tracing::Span;
 
 use crate::{
     fallback_process::{method_not_allowed_fallback, not_found_handler}, handle::{
-        create_handler, delete_handler, extraction_body, extraction_body_bytes,
-        extraction_body_custom, extraction_body_err, extraction_body_str, extraction_headers,
-        extraction_path, extraction_path_and_query, extraction_query, extraction_request,
-        extraction_state_counter, index, list_handler, update_handler,
+        create_handler, delete_handler, extension_query_valida, extraction_body, extraction_body_bytes, extraction_body_custom, extraction_body_err, extraction_body_str, extraction_headers, extraction_path, extraction_path_and_query, extraction_path_many, extraction_query, extraction_request, extraction_state_counter, index, list_handler, update_handler
     }, middlewares, state::AppState
 };
 
@@ -22,10 +23,10 @@ pub fn routers() -> axum::Router {
     // request trace
     let request_trace = TraceLayer::new_for_http()
         .on_request(| req: &Request<_>, _: &Span |{
-            tracing::info!("[Request] {} | {} | [{:?}]", req.method(), req.uri(), req.version());
+            // tracing::info!("[Request] {} | {} | [{:?}]", req.method(), req.uri(), req.version());
         })
         .on_response(|res: &Response<_>, latency: Duration, _: &Span| {
-            tracing::info!("[Response] status={}, latency={}ms",res.status().as_u16(),latency.as_millis());
+            // tracing::info!("[Response] status={}, latency={}ms",res.status().as_u16(),latency.as_millis());
         }
     );
     // register middlewares
@@ -54,7 +55,9 @@ pub fn api_route() -> Router {
 pub fn api_example_route(state: AppState) -> Router {
     Router::new()
         .route("/extraction/path/:id", get(extraction_path))
-        .route("/extraction/query", get(extraction_query))
+        .route("/extraction/path/many/:id/:name", get(extraction_path_many))
+        .route("/extraction/query/many", get(extraction_query))
+        .route("/extraction/query/valida", get(extension_query_valida))
         .route("/extraction/path/query/:id", get(extraction_path_and_query))
         .route("/extraction/body", post(extraction_body))
         .route("/extraction/body/err", post(extraction_body_err))

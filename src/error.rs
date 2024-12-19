@@ -2,17 +2,23 @@
 #![allow(dead_code)]
 #![allow(unused_parens)]
 
-use axum::{http::StatusCode, response::IntoResponse, Json};
+use std::fmt::Display;
+
+use crate::response::ApiResponse;
+use axum::{extract::rejection::FormRejection, http::StatusCode, response::IntoResponse, Json};
 use serde::Serialize;
 use thiserror::Error;
-use crate::response::ApiResponse;
-
+use tracing::error;
+use validator::ValidationErrors;
 
 /// Api Error
-#[derive(Error, Debug, Serialize)]
-pub enum ApiError{
+#[derive(Error, Debug)]
+pub enum ApiError {
     #[error("Error")]
     SysError,
+    #[error("{0}")]
+    BusinessError(String),
+
     #[error("Route not found")]
     RouteNotFound,
     #[error("Method not allowed")]
@@ -27,35 +33,65 @@ pub enum ApiError{
     #[error("Token expired")]
     TokenExpired,
 
-
-    #[error("Invalid parameter: {0}")]
-    ValidationError(String),
-
-
-    // Content-Type 错误
     #[error("{0}")]
     RequestUnsupportedMediaType(String),
-    // 请求参数错误
-    #[error("Request parameter error")]
-    RequestParamError,
+
+    // Request params error
+    #[error("{0}")]
+    RequestParamError(String),
+    // RequestBody error
+    #[error("{0}")]
+    RequestBodyError(String),
+    
+
+    #[error(transparent)]
+    ValidationError(#[from] ValidationErrors),
+    #[error(transparent)]
+    AxumFormRejection(#[from] FormRejection),
 }
 
 /// 实现 ApiError -> Axum Response 的转换
-impl IntoResponse for ApiError{
+impl IntoResponse for ApiError {
     fn into_response(self) -> axum::response::Response {
-        let message = self.to_string();
+        let mut message = self.to_string();
         let (http_status) = match self {
-            ApiError::SysError => (StatusCode::INTERNAL_SERVER_ERROR),
+            ApiError::SysError | ApiError::BusinessError(_) => (StatusCode::INTERNAL_SERVER_ERROR),
             ApiError::RouteNotFound => (StatusCode::NOT_FOUND),
-            ApiError::ValidationError(_) => (StatusCode::BAD_REQUEST),
             ApiError::RequestUnsupportedMediaType(_) => (StatusCode::UNSUPPORTED_MEDIA_TYPE),
-            ApiError::RequestParamError => (StatusCode::BAD_REQUEST),
             ApiError::MethodNotAllowed => (StatusCode::METHOD_NOT_ALLOWED),
-            ApiError::Unauthorized | 
-                ApiError::TokenSyntaxError | 
-                ApiError::TokenExpired | 
-                ApiError::TokenInvalid => (StatusCode::UNAUTHORIZED),
+            ApiError::RequestBodyError(_)
+            | ApiError::RequestParamError(_) => (StatusCode::BAD_REQUEST),
+            ApiError::Unauthorized
+            | ApiError::TokenSyntaxError
+            | ApiError::TokenExpired
+            | ApiError::TokenInvalid => (StatusCode::UNAUTHORIZED),
+            ApiError::ValidationError(errors) => {
+                message = format!("Input validation error: [{errors}]").replace('\n', ", ");
+                StatusCode::BAD_REQUEST
+            },
+            ApiError::AxumFormRejection(e) => {
+                message = e.body_text();
+                (StatusCode::BAD_REQUEST)
+            }
         };
-        (http_status, Json(ApiResponse::<()>::error_with_msg(message))).into_response()
+        (
+            http_status,
+            Json(ApiResponse::<()>::error_with_msg(message)),
+        )
+            .into_response()
+    }
+}
+
+/// Json parse fail info
+#[derive(Debug, Serialize)]
+pub struct JsonParseLocation {
+    pub line: usize,
+    pub column: usize,
+    pub message: String,
+}
+
+impl Display for JsonParseLocation {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "line: {}, column: {}", self.line, self.column)
     }
 }

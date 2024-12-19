@@ -12,7 +12,9 @@ use tracing::info;
 async fn main() {
     logger::logger_init();
     let app = route::routers();
-    let addr: SocketAddr = format!("127.0.0.1:15001").parse().expect("Can not parse address and port");
+    let addr: SocketAddr = format!("127.0.0.1:15001")
+        .parse()
+        .expect("Can not parse address and port");
     let listen = TcpListener::bind(addr)
         .await
         .with_context(|| format!("Failed to bind server to"))
@@ -20,12 +22,15 @@ async fn main() {
     info!("Server listening on {}", addr);
     axum::serve(listen, app)
         .with_graceful_shutdown(graceful_shutdown())
-        .await.unwrap();
+        .await
+        .unwrap();
 }
 
 /// 等待信号停止服务
-async fn graceful_shutdown(){
-    tokio::signal::ctrl_c().await.expect("Expect shutdown signal handler");
+async fn graceful_shutdown() {
+    tokio::signal::ctrl_c()
+        .await
+        .expect("Expect shutdown signal handler");
     info!("Server stop");
     // todo do clean handler
 }
