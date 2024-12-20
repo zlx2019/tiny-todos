@@ -19,7 +19,7 @@ async fn main() {
         .await
         .with_context(|| format!("Failed to bind server to"))
         .unwrap();
-    info!("Server listening on {}", addr);
+    info!("Server started successfully listening on {}", addr);
     axum::serve(listen, app)
         .with_graceful_shutdown(graceful_shutdown())
         .await
@@ -31,6 +31,6 @@ async fn graceful_shutdown() {
     tokio::signal::ctrl_c()
         .await
         .expect("Expect shutdown signal handler");
-    info!("Server stop");
+    info!("Server stopped successfully");
     // todo do clean handler
 }

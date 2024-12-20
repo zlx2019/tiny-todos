@@ -1,34 +1,29 @@
-use time::{macros::format_description, UtcOffset};
+use time::macros::format_description;
 use tracing::level_filters::LevelFilter;
 use tracing_appender::rolling::{RollingFileAppender, Rotation};
 use tracing_subscriber::{
-    fmt::{self, format::FmtSpan, time::OffsetTime},
+    fmt::{self, format::FmtSpan, time::LocalTime},
     layer::SubscriberExt,
     Layer, Registry,
 };
 
-const LOG_FILE_NAME: &str = "tiny";
 const LOG_DIR: &str = "logs";
+const LOG_FILE_NAME_PREFIX: &str = "tiny";
+const LOG_FILE_NAME_SUFFIX: &str = "log";
 
 pub fn logger_init() {
-    // 定义日志时间格式、时区.
-    let local_offset = UtcOffset::from_hms(8, 0, 0).unwrap();
-    let timer = OffsetTime::new(
-        local_offset,
-        format_description!("[year]/[month]/[day] [hour]:[minute]:[second]"),
-    );
-
+    let time_format = LocalTime::new(format_description!("[year]/[month]/[day] [hour]:[minute]:[second].[subsecond digits:3]"));
     // 文件日志
     let log_file_layout = RollingFileAppender::builder()
         .rotation(Rotation::DAILY)
-        .filename_prefix(LOG_FILE_NAME)
-        .filename_suffix("log")
+        .filename_prefix(LOG_FILE_NAME_PREFIX)
+        .filename_suffix(LOG_FILE_NAME_SUFFIX)
         .build(LOG_DIR)
         .unwrap();
     let file_layer = fmt::layer()
         .with_file(true)
         .with_line_number(true)
-        .with_timer(timer.clone())
+        .with_timer(time_format.clone())
         .with_ansi(false)
         .with_span_events(FmtSpan::FULL)
         .with_target(false)
@@ -48,7 +43,7 @@ pub fn logger_init() {
         // 显示目标
         .with_target(false)
         // 日志时间格式
-        .with_timer(timer)
+        .with_timer(time_format)
         // 日志输出最大级别
         .with_filter(LevelFilter::INFO);
 
