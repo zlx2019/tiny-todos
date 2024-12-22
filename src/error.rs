@@ -47,11 +47,10 @@ pub enum ApiError {
     AxumFormRejection(#[from] FormRejection),
 }
 
-/// 实现 ApiError -> Axum Response 的转换
-impl IntoResponse for ApiError {
-    fn into_response(self) -> axum::response::Response {
-        // TODO OPT
-        let (status_code, message) = match self {
+impl ApiError{
+    /// 获取 ApiError 响应的HTTP状态码和响应消息
+    pub fn get_msg_states(&self) -> (StatusCode, String){
+        match self {
             // 应用错误
             ApiError::SysError | 
             ApiError::BusinessError(_) => {
@@ -80,12 +79,28 @@ impl IntoResponse for ApiError {
                 (StatusCode::BAD_REQUEST, form_err.body_text())  
             }  
             ApiError::RequestBodyJsonError(json_err) => {  
-                (StatusCode::BAD_REQUEST, json_err.body_text())  
+                (StatusCode::BAD_REQUEST, json_err.body_text())
             }  
             ApiError::RequestPathError(path_err) => {  
                 (StatusCode::BAD_REQUEST, path_err.body_text())  
             }  
-        };
+        }
+    }
+}
+
+/// 实现 ApiError -> Axum Response 的转换
+impl IntoResponse for ApiError {
+    fn into_response(self) -> axum::response::Response {
+        // TODO OPT
+        let (status_code, message) = self.get_msg_states();
         (status_code,Json(ApiResponse::<()>::error_with_msg(message)),).into_response()
+    }
+}
+
+
+/// 将 ApiError 转换为 Err(ApiError)
+impl<T> From<ApiError> for Result<ApiResponse<T>, ApiError>{
+    fn from(value: ApiError) -> Self {
+        Err(value)
     }
 }

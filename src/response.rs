@@ -69,3 +69,11 @@ impl From<ResponseCode> for i32 {
         }
     }
 }
+
+
+/// ApiResponse<T> 转换为 Ok(ApiResponse<T>)
+impl<T, E> From<ApiResponse<T>> for Result<ApiResponse<T>, E>{
+    fn from(value: ApiResponse<T>) -> Self {
+        Ok(value)
+    }
+}

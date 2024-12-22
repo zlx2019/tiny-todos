@@ -25,8 +25,12 @@ pub async fn index() -> Result<impl IntoResponse, ApiError> {
 pub async fn std_api() -> Result<impl IntoResponse, ApiError> {
     if true {
         Ok(ApiResponse::ok("Hello Ok."))
+        // or
+        // ApiResponse::ok("Hello Ok").into()
     } else {
         Err(ApiError::MethodNotAllowed)
+        // or
+        // ApiError::SysError.into()
     }
 }
 

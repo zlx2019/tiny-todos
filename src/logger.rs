@@ -37,7 +37,7 @@ pub fn logger_init() {
         // 显示行号
         .with_line_number(true)
         // 显示文件名
-        .with_file(false)
+        .with_file(true)
         // 显示线程ID
         .with_thread_ids(false)
         // 显示目标
