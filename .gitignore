@@ -2,3 +2,4 @@
 Cargo.lock
 logs
 *.log
+.idea
