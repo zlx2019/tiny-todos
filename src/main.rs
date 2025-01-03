@@ -31,6 +31,6 @@ async fn graceful_shutdown() {
     tokio::signal::ctrl_c()
         .await
         .expect("expect shutdown signal handler");
-    info!("server stopped successfully");
+    info!("server stopped...");
     // todo do clean handler
 }

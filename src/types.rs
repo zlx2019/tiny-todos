@@ -33,20 +33,29 @@ impl Default for Pagination {
 #[derive(Debug, Deserialize, Serialize, Validate)]
 pub struct QueryParams {
     pub id: usize,
-    
     #[validate(length(min = 1, message = "Can not be empty"))]
     pub name: String,
+    #[validate(length(min = 6, max = 18, message = "Password length must be between 6 ~ 18"))]
+    pub password: String,
+    #[validate(email(message = "Email format invalid"))]
+    pub email: String
 }
 
 /// Request Body 参数体
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Validate)]
 pub struct BodyParams {
     pub id: usize,
+    #[validate(length(min = 1, message = "Can not be empty"))]
     pub name: String,
+    #[validate(length(min = 6, max = 18, message = "Password length must be between 6 ~ 18"))]
+    pub password: String,
+    #[validate(email(message = "Email format invalid"))]
+    pub email: Option<String>,
     pub lock: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub score: Option<f64>,
 }
+
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct PathParams {

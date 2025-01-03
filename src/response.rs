@@ -46,6 +46,9 @@ where
     pub fn error(error: ApiError) -> Self {
         Self::new(ResponseCode::Error.into(), error.to_string(), None)
     }
+    pub fn error_with_data(message: impl Into<String>, data: T) -> Self {
+        Self::new(ResponseCode::Error.into(), message, Some(data))
+    }
     fn new(code: i32, message: impl Into<String>, data: Option<T>) -> Self {
         Self {
             code: code,

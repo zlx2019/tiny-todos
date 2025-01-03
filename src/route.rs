@@ -13,7 +13,7 @@ use tracing::Span;
 
 use crate::{
     fallback_process::{method_not_allowed_fallback, not_found_handler}, handle::{
-        create_handler, delete_handler, extension_query_valida, extraction_body, extraction_body_bytes, extraction_body_custom, extraction_body_str, extraction_headers, extraction_path, extraction_path_and_query, extraction_path_many, extraction_query, extraction_request, extraction_state_counter, index, list_handler, update_handler
+        create_handler, delete_handler, extension_query_valida, extraction_body, extraction_body_bytes, extraction_body_custom, extraction_body_str, extraction_body_validate, extraction_headers, extraction_path, extraction_path_and_query, extraction_path_many, extraction_query, extraction_request, extraction_state_counter, index, list_handler, update_handler
     }, middlewares, state::AppState
 };
 
@@ -61,6 +61,7 @@ pub fn api_example_route(state: AppState) -> Router {
         .route("/extraction/path/query/:id", get(extraction_path_and_query))
         .route("/extraction/body", post(extraction_body))
         .route("/extraction/body/custom", post(extraction_body_custom))
+        .route("/extraction/body/validate", post(extraction_body_validate))
         .route("/extraction/headers", get(extraction_headers))
         .route("/extraction/request", get(extraction_request))
         .route("/extraction/body/string", get(extraction_body_str))

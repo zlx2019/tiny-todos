@@ -2,18 +2,14 @@
 #![allow(dead_code)]
 
 use axum::{
-    body::Bytes,
-    extract::{Path, Query, Request, State},
-    http::{HeaderMap, Method},
-    response::IntoResponse,
-    Json,
+    body::Bytes, extract::{Path, Query, Request, State}, http::{HeaderMap, Method}, response::IntoResponse, Json
 };
 use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, sync::atomic::Ordering};
 use tracing::info;
 
 use crate::{
-    error::ApiError, extractors::{request_body::RequestBody, request_path::RequestPath}, response::ApiResponse, state::AppState, types::{BodyParams, Pagination, PathParams, QueryParams}, validations::form_validate::ValidateForm
+    error::ApiError, extractors::{request_body::{RequestBody, ValidateRequestBody}, request_path::RequestPath}, response::ApiResponse, state::AppState, types::{BodyParams, Pagination, PathParams, QueryParams}, validations::form_validate::ValidateForm
 };
 
 /// Home
@@ -33,6 +29,7 @@ pub async fn std_api() -> Result<impl IntoResponse, ApiError> {
         // ApiError::SysError.into()
     }
 }
+
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct CreateTodoReq {
@@ -77,7 +74,7 @@ pub async fn extraction_query(Query(param): Query<QueryParams>) -> impl IntoResp
     ApiResponse::ok(param)
 }
 
-/// 参数校验
+/// Query 参数校验
 pub async fn extension_query_valida(ValidateForm(req): ValidateForm<QueryParams>) -> impl IntoResponse{
     info!("{:?}", req);
     ApiResponse::ok(req)
@@ -107,6 +104,12 @@ pub async fn extraction_body_custom(
     RequestBody(req): RequestBody<BodyParams>,
 ) -> impl IntoResponse {
     info!("extraction body by custom: {:?}", req);
+    ApiResponse::ok(req)
+}
+
+/// 使用自定义 RequestBydo
+pub async fn extraction_body_validate(ValidateRequestBody(req): ValidateRequestBody<BodyParams>) -> impl IntoResponse{
+    info!("extraction body by validate: {:?}", req);
     ApiResponse::ok(req)
 }
 
